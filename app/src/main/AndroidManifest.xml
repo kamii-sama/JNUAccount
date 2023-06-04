@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.JNU.keepaccounts">
+
+    <application
+        android:name="com.JNU.keepaccounts.utils.globle.SelfApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_block"
+        android:label="@string/app_name_cn"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SongGuoJiZhang">
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.info.MoreSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.info.AboutPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.info.SwitchAccountBookPageActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.info.UpdatePasswordPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.info.UpdateUsernamePageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.edit.account.UpdateEditAccountPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.edit.account.AddEditAccountPageActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.guide.GuideAccountBookNamePageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.guide.GuideEnablePasswordCheckPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.guide.GuideRepasswordPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.guide.GuidePasswordPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.guide.GuideUsernamePageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.guide.GuideStartPageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.activity.home.HomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.JNU.keepaccounts.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
