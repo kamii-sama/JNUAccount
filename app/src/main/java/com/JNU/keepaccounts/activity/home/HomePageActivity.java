@@ -57,9 +57,9 @@ public class HomePageActivity extends BasicActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.home_page_nav_menu_item_overview:
-                        replaceFragment(new ShowOverviewPageFragment());
-                        break;
+//                    case R.id.home_page_nav_menu_item_overview:
+//                        replaceFragment(new ShowOverviewPageFragment());
+//                        break;
                     case R.id.home_page_nav_menu_item_addlist:
                         replaceFragment(new ShowAddListPageFragment());
                         break;

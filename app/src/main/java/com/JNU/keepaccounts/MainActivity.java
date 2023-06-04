@@ -33,6 +33,7 @@ public class MainActivity extends BasicActivity {
                 if(isFirstUse){
                     // 如果为第一次启动,则进入引导界面,引导流程结束后再更改标识
                     GuideStartPageActivity.startThisActivity(MainActivity.this);
+
                 }else {
                     // 如果不是第一次启动,取出SID
                     int sid = songguoPreferences.getInt(GlobalConstant.SID, 0);

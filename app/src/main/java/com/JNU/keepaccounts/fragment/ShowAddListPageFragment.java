@@ -39,7 +39,7 @@ public class ShowAddListPageFragment extends BasicFragment {
         // 组件绑定
         // 两个标签
         accountTextView = thisView.findViewById(R.id.show_add_list_page_account_textview);
-        eventTextView = thisView.findViewById(R.id.show_add_list_page_event_textview);
+//        eventTextView = thisView.findViewById(R.id.show_add_list_page_event_textview);
         // 新增按钮
         floatingActionButton = thisView.findViewById(R.id.show_add_list_page_add_button);
 
@@ -58,14 +58,14 @@ public class ShowAddListPageFragment extends BasicFragment {
                 replaceFragment(new ShowAccountListPageFragment());
             }
         });
-        eventTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GlobalInfo.currentAddPage = GlobalConstant.ADD_PAGE_EVENT;
-                refreshCurrentTextView();
-                // 更改fragment中的内容
-            }
-        });
+//        eventTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                GlobalInfo.currentAddPage = GlobalConstant.ADD_PAGE_EVENT;
+//                refreshCurrentTextView();
+//                // 更改fragment中的内容
+//            }
+//        });
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,14 +90,14 @@ public class ShowAddListPageFragment extends BasicFragment {
      */
     private void refreshCurrentTextView() {
         switch (GlobalInfo.currentAddPage) {
-            case GlobalConstant.ADD_PAGE_ACCOUNT:
-                accountTextView.setTextColor(0xff323232);
-                eventTextView.setTextColor(0xff808080);
-                break;
-            case GlobalConstant.ADD_PAGE_EVENT:
-                eventTextView.setTextColor(0xff323232);
-                accountTextView.setTextColor(0xff808080);
-                break;
+//            case GlobalConstant.ADD_PAGE_ACCOUNT:
+//                accountTextView.setTextColor(0xff323232);
+//                eventTextView.setTextColor(0xff808080);
+//                break;
+//            case GlobalConstant.ADD_PAGE_EVENT:
+//                eventTextView.setTextColor(0xff323232);
+//                accountTextView.setTextColor(0xff808080);
+//                break;
         }
     }
 
@@ -113,21 +113,6 @@ public class ShowAddListPageFragment extends BasicFragment {
         fragmentTransaction.commit();
     }
 
-//    /**
-//     * 获取当前设置的默认界面
-//     * @return
-//     */
-//    private Fragment getDefultFragment(){
-//        switch (defultSelectId){
-//            case OVER_PAGE_NUM:
-//                return new ShowOverviewPageFragment();
-//            case ADD_LIST_PAGE_NUM:
-//                return new ShowAddListPageFragment();
-//            case MY_INFO_PAGE_NUM:
-//                return new ShowMyInfoPageFragment();
-//            default:
-//                return new ShowOverviewPageFragment();
-//        }
-//    }
+
 
 }
