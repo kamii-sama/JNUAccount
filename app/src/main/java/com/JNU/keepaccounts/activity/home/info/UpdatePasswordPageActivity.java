@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.JNU.keepaccounts.R;
 import com.JNU.keepaccounts.bean.SettingInfo;
-import com.JNU.keepaccounts.db.DatabaseHelper;
-import com.JNU.keepaccounts.db.mapper.SettingInfoMapper;
+import com.JNU.keepaccounts.data.DatabaseHelper;
+import com.JNU.keepaccounts.data.mapper.SettingInfoMapper;
 import com.JNU.keepaccounts.utils.globle.BasicActivity;
 import com.JNU.keepaccounts.utils.globle.GlobalInfo;
 import com.JNU.keepaccounts.utils.globle.Utils;

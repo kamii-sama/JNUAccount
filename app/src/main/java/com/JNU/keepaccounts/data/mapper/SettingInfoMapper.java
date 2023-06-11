@@ -1,10 +1,10 @@
-package com.JNU.keepaccounts.db.mapper;
+package com.JNU.keepaccounts.data.mapper;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.JNU.keepaccounts.bean.SettingInfo;
-import com.JNU.keepaccounts.db.DatabaseHelper;
+import com.JNU.keepaccounts.data.DatabaseHelper;
 
 public class SettingInfoMapper {
     public static final String INSERT_SETTING_INFO = "insert into t_setting_info \n" +

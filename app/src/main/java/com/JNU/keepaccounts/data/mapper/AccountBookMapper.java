@@ -1,11 +1,10 @@
-package com.JNU.keepaccounts.db.mapper;
+package com.JNU.keepaccounts.data.mapper;
 
-import android.accounts.Account;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.JNU.keepaccounts.bean.AccountBook;
-import com.JNU.keepaccounts.db.DatabaseHelper;
+import com.JNU.keepaccounts.data.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.JNU.keepaccounts.db;
+package com.JNU.keepaccounts.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

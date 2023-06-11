@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.JNU.keepaccounts.R;
 import com.JNU.keepaccounts.activity.home.info.SwitchAccountBookPageActivity;
 import com.JNU.keepaccounts.bean.AccountBook;
-import com.JNU.keepaccounts.db.DatabaseHelper;
-import com.JNU.keepaccounts.db.mapper.AccountBookMapper;
-import com.JNU.keepaccounts.db.mapper.SettingInfoMapper;
+import com.JNU.keepaccounts.data.DatabaseHelper;
+import com.JNU.keepaccounts.data.mapper.AccountBookMapper;
+import com.JNU.keepaccounts.data.mapper.SettingInfoMapper;
 import com.JNU.keepaccounts.utils.globle.GlobalInfo;
 import com.JNU.keepaccounts.utils.globle.Utils;
 

@@ -1,8 +1,8 @@
-package com.JNU.keepaccounts.db.mapper;
+package com.JNU.keepaccounts.data.mapper;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.JNU.keepaccounts.db.DatabaseHelper;
+import com.JNU.keepaccounts.data.DatabaseHelper;
 
 public class EventItemMapper {
     DatabaseHelper songGuoDatabaseHelper;

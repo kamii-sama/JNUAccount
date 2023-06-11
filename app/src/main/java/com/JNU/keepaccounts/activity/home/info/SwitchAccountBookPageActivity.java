@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,15 +18,13 @@ import com.JNU.keepaccounts.adapter.SwitchAccountBookAdapter;
 import com.JNU.keepaccounts.bean.AccountBook;
 //import com.JNU.keepaccounts.db.DatabaseHelper;
 //import com.JNU.keepaccounts.db.mapper.AccountBookMapper;
-import com.JNU.keepaccounts.db.DatabaseHelper;
-import com.JNU.keepaccounts.db.mapper.AccountBookMapper;
+import com.JNU.keepaccounts.data.DatabaseHelper;
+import com.JNU.keepaccounts.data.mapper.AccountBookMapper;
 import com.JNU.keepaccounts.utils.globle.BasicActivity;
 import com.JNU.keepaccounts.utils.globle.GlobalInfo;
 import com.JNU.keepaccounts.utils.globle.Utils;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 public class SwitchAccountBookPageActivity extends BasicActivity {
@@ -141,7 +138,7 @@ public class SwitchAccountBookPageActivity extends BasicActivity {
         AccountBook init_book = new AccountBook();
         init_book.setAccountBookName("1");
         AccountBook init_book2 = new AccountBook();
-        init_book.setAccountBookName("2");
+        init_book2.setAccountBookName("2");
         List<AccountBook> myList = new ArrayList<>();
         myList.add(init_book2);
         myList.add(init_book);
