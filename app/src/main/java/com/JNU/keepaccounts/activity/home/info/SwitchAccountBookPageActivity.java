@@ -1,5 +1,6 @@
 package com.JNU.keepaccounts.activity.home.info;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,16 +20,19 @@ import com.JNU.keepaccounts.adapter.SwitchAccountBookAdapter;
 import com.JNU.keepaccounts.bean.AccountBook;
 //import com.JNU.keepaccounts.db.DatabaseHelper;
 //import com.JNU.keepaccounts.db.mapper.AccountBookMapper;
-import com.JNU.keepaccounts.data.DatabaseHelper;
-import com.JNU.keepaccounts.data.mapper.AccountBookMapper;
 import com.JNU.keepaccounts.utils.globle.BasicActivity;
 import com.JNU.keepaccounts.utils.globle.GlobalInfo;
 import com.JNU.keepaccounts.utils.globle.Utils;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SwitchAccountBookPageActivity extends BasicActivity {
+public class SwitchAccountBookPageActivity extends BasicActivity{
     TextView backTextView;
     TextView addTextView;
     LinearLayout addLinearLayout;
@@ -64,14 +69,19 @@ public class SwitchAccountBookPageActivity extends BasicActivity {
     private void init() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(SwitchAccountBookPageActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        // 获取所有账本
-        AccountBookMapper accountBookMapper = new AccountBookMapper(DatabaseHelper.getDatabaseHelper(SwitchAccountBookPageActivity.this));
-        GlobalInfo.accountBooks = accountBookMapper.selectAll();
 
-//        //为了能够用espresso录制，添加此段初始化代码
-//        AccountBook init_book = new AccountBook();
-//        init_book.setAccountBookName("1");
-//        GlobalInfo.accountBooks.add(init_book);
+        // 获取所有账本
+//        AccountBookMapper accountBookMapper = new AccountBookMapper(DatabaseHelper.getDatabaseHelper(SwitchAccountBookPageActivity.this));
+//        GlobalInfo.accountBooks = accountBookMapper.selectAll();
+
+        //为了能够用espresso录制，添加此段初始化代码
+        GlobalInfo.accountBooks = new ArrayList<>();
+        GlobalInfo.accountBooks.addAll(Load(this));
+        //用于生成测试
+//        AccountBook book = new AccountBook();
+//        book.setAccountBookName("1");
+//        GlobalInfo.accountBooks.add(book);
+
         switchAccountBookAdapter = new SwitchAccountBookAdapter(SwitchAccountBookPageActivity.this, GlobalInfo.accountBooks);
         recyclerView.setAdapter(switchAccountBookAdapter);
 
@@ -111,19 +121,15 @@ public class SwitchAccountBookPageActivity extends BasicActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(Utils.notEmptyString(editText.getText().toString())){
-                                    //绑定数据库
-//                                    AccountBookMapper accountBookMapper = new AccountBookMapper(DatabaseHelper.getDatabaseHelper(SwitchAccountBookPageActivity.this));
-                                    //创建账本实例
-                                    AccountBook accountBook = new AccountBook();
+                                    //                                    //创建账本实例
+                                    AccountBook accountBook=new AccountBook();
                                     accountBook.setAccountBookName(editText.getText().toString());
-//                                    accountBook = accountBookMapper.insertAccountBook(accountBook);
-                                    //更新全局信息
-                                    GlobalInfo.currentAccountBook = accountBook;
-                                    //刷新信息
-                                    refreshAccountBook();
-                                    Utils.showOneToast(SwitchAccountBookPageActivity.this,"添加成功，当前帐本为《"+accountBook+"》");
-                                    //为了能够多次进行espresso测试，需要在末尾删除数据库内容
-//                                    accountBookMapper.deleteAccountBook(accountBook);
+                                    GlobalInfo.currentAccountBook=accountBook;
+                                    GlobalInfo.accountBooks.add(accountBook);
+                                    Save((Context) SwitchAccountBookPageActivity.this, (ArrayList<AccountBook>) GlobalInfo.accountBooks);
+                                    refreshAccountBook1();
+                                    Utils.showOneToast(SwitchAccountBookPageActivity.this,"添加成功，当前账本为《"+accountBook+"》");
+
                                 }
                                 else{
                                     Utils.showOneToast(SwitchAccountBookPageActivity.this,"账本添加失败");
@@ -133,15 +139,45 @@ public class SwitchAccountBookPageActivity extends BasicActivity {
                 ).setNegativeButton("取消", null).show();
 
     }
+    public void Save(Context context, ArrayList<AccountBook> data)
+    {
+        try {
+
+            FileOutputStream dataStream=context.openFileOutput("mydata.dat",Context.MODE_PRIVATE);
+            ObjectOutputStream out = new ObjectOutputStream(dataStream);
+            out.writeObject(data);
+            Log.v("dataSave", String.valueOf(data));
+            out.close();
+            dataStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @NonNull
+    public ArrayList<AccountBook> Load(Context context)
+    {
+        ArrayList<AccountBook> data=new ArrayList<>();
+        try {
+            FileInputStream fileIn = context.openFileInput("mydata.dat");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            data = (ArrayList<AccountBook>) in.readObject();
+            Log.v("dataLoad", String.valueOf(data));
+            in.close();
+            fileIn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
 
     public void refreshAccountBook() {
         AccountBook init_book = new AccountBook();
         init_book.setAccountBookName("1");
-        AccountBook init_book2 = new AccountBook();
-        init_book2.setAccountBookName("2");
+//        AccountBook init_book2 = new AccountBook();
+//        init_book2.setAccountBookName("2");
         List<AccountBook> myList = new ArrayList<>();
-        myList.add(init_book2);
         myList.add(init_book);
+//        myList.add(init_book2);
         // 全局账本清空
         GlobalInfo.accountBooks.clear();
         // 全局账本重新添加
@@ -149,6 +185,9 @@ public class SwitchAccountBookPageActivity extends BasicActivity {
         GlobalInfo.accountBooks.addAll(myList);
         //        GlobalInfo.accountBooks.add(init_book);
 //        GlobalInfo.accountBooks.add(init_book2);
+        switchAccountBookAdapter.notifyDataSetChanged();
+    }
+    public void refreshAccountBook1(){
         switchAccountBookAdapter.notifyDataSetChanged();
     }
 }
