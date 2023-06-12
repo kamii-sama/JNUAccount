@@ -1,6 +1,8 @@
 package com.JNU.keepaccounts.bean;
 
-public class AccountBook {
+import java.io.Serializable;
+
+public class AccountBook implements Serializable {
     private Integer bid;
     // 账本名
     private String accountBookName;
